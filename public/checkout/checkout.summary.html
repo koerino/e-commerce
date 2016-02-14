@@ -1,0 +1,36 @@
+<div id='summary-container'>
+    <a ui-sref='checkout.success' class='submit'>SUBMIT ORDER</a>
+    <a ui-sref='checkout.payment' class='prev'>PREVIOUS</a>
+    <div id='cart-summary'>
+        <div ng-repeat="item in cart" id='products'>
+            <img src='{{ item.pictureUrl }}'>
+            <span class='width-10'>{{ item.name }}</span>
+            <span class='width-10'>{{ item.quantity }}&nbsp &times &nbsp {{ item.price | currency }}</span>
+            <span class='width-5'>{{ item.quantity * item.price | currency }}</span>
+        </div>
+        <hr>
+        <span>TOTAL: {{ sum() | currency }}</span>
+    </div>
+    <div id='payment-summary'>
+        <div class='height-sm'>
+            <h6>PAYMENT</h6>
+            <span>{{ payment.cardType }}</span>&nbsp<span ng-hide='!payment.card.length'>Ends in</span>&nbsp<span>{{ payment.card.slice(-4) }}</span>
+        </div>
+        <div class='height-md'>
+            <h6>BILLING INFO</h6>
+            <span>{{ billing.fullname }}</span>
+            <span>{{ billing.address1 }}</span>
+            <span>{{ billing.address2 }}</span>
+            <span>{{ billing.city }} {{ billing.state}} {{ billing.zipcode }}</span>
+            <span>{{ billing.country }}</span>
+        </div>
+        <div class='height-md'>
+            <h6>SHIPPING INFO</h6>
+            <span>{{ client.fullname }}</span>
+            <span>{{ client.address1 }}</span>
+            <span>{{ client.address2 }}</span>
+            <span>{{ client.city }} {{ client.state }} {{ client.zipcode }}</span>
+            <span>{{ client.country }}</span>
+        </div>
+    </div>
+</div>

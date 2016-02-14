@@ -1,0 +1,14 @@
+<div ng-repeat="entry in listing | filter: {_id: state.params.itemId }: true" id='detail-container'>
+    <div id='info'>
+        <img ng-src='{{ entry.pictureUrl }}'>
+        <div>
+            <span>{{ entry.name }}</span>
+            <span id='price'>{{ entry.price | currency }}</span>
+            <div>
+                <button ui-sref='listing' id='back'>Back</button>
+                <button ng-click='displayCart(); addToCart(entry)'>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+<span ng-repeat="entry in listing | filter: {_id: state.params.itemId }" id='des'>{{ entry.description }}</span>

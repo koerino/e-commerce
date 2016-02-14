@@ -1,0 +1,103 @@
+#registr-container {
+    width: 100%;
+    height: 100%;
+    @include center;
+    a {
+        @include buttonlike-base;
+        @include buttonlike-2($orange);
+        @include font;
+        display: inline-block;
+        margin-bottom: 1em;
+    }
+}
+#registr-login {
+    width: 32em;
+    height: 24em;
+    margin: auto;
+    border: 2px solid $platinum;
+    &:hover {
+        border-color: lighten($purple, 5%);
+    }
+    @include transition(border-color, 0.5s, ease);
+    @include center(column);
+    span, input {
+        @include font(15px);
+        display: block;
+        margin-top: 1em;
+        line-height: 1.2em;
+    }
+    input {
+        width: 20em;
+        height: 2.5em;
+        padding: 0 0.5em;
+        border: 1px solid $platinum;
+        outline: 0;
+        &:focus {
+            border: 2px solid lighten($light-red, 5%);
+        }
+    }
+    .light-red-btn {
+        font-size: 15px;
+        margin: 1.75em 0 0.5em;
+        @include buttonlike-2($light-red);
+    }
+    .underline-text {
+        @include hover-1($light-red);
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+#registr-signup {
+    @extend #registr-login;
+    display: block;
+    height: 30.5em;
+    padding-top: 1.5em;
+    span, input, a {
+        margin: 0.75em auto 0;
+    }
+    span {
+        display: inline-block;
+        margin-left: 7.25em;
+    }
+    > span, .no-margin {
+        margin-left: 0;
+    }
+    .block {
+        display: block;
+        text-align: center;
+        margin: 1em 0
+    }
+    .align-center {
+        text-align: center;
+    }
+    input[type='password']:focus {
+        + #pwd-check {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    #signupRes {
+        font-size: 13px;
+    }
+}
+.light-red {
+    color: $light-red;
+}
+#pwd-check {
+    background-color: $pure-white;
+    color: $light-red;
+    position: absolute;
+    top: -2em;
+    left: 30em;
+    opacity: 0;
+    visibility: collapse;
+    @include transition(all, 0.5s, ease);
+    li {
+        margin: 1em 0;
+        @include font(13px);
+    }
+}
+#pwd-form {
+    position: relative;
+}

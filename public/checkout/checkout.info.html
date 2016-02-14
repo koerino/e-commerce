@@ -1,0 +1,43 @@
+<div id='checkout-form'>
+    <span>Shipping Information</span>
+    <a ui-sref='checkout.payment' class='next'>NEXT</a>
+    <div>
+        <div>
+            <span>Full Name</span>
+            <input type='text' class='width-20' ng-model='client.fullname' ng-change='sync()'>
+        </div>
+        <div>
+            <span>Email</span>
+            <input type='text' id='email' class='width-25' ng-model="client.email" ng-change='sync()'>
+        </div>
+    </div>
+    <div>
+        <span>Address</span>
+        <input type="text" placeholder="Line 1" class='width-30' ng-model="client.address1" ng-change='sync()'>
+        <input type="text" placeholder="Line 2(optional)" class='width-30 line-2' ng-model="client.address2" ng-change='sync()'>
+    </div>
+    <div>
+        <div>
+            <span>City</span>
+            <input type='text' class='width-15' ng-model='client.city' ng-change='sync()'>
+        </div>
+        <div>
+            <span>State/Province</span>
+            <input type='text' class='width-15' ng-model="client.state" ng-change='sync()'>
+        </div>
+        <div>
+            <span>ZIP/Postal Code</span>
+            <input type='text' class='width-10' ng-model="client.zipcode" ng-change='sync()'>
+        </div>
+    </div>
+    <div>
+        <div>
+            <span>Country</span>
+            <input type='text' class='width-15' ng-model="client.country" ng-change='sync()'>
+        </div>
+        <div>
+            <span>Primary Phone</span>
+            <input type='text' class='width-15' ng-model="client.phone" ng-change='sync()'>
+        </div>
+    </div>
+</div>

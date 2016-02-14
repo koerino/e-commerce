@@ -1,0 +1,15 @@
+<div class='background'>
+    <div id='checkout-container'>
+        <h3>CHECKOUT SECURELY</h3>
+        <a ui-sref='listing'>BACK</a>
+        <div>
+            <div id='checkout-nav'>
+                <a ui-sref='checkout.info' ui-sref-active='active'>DELIVERY</a>
+                <a ui-sref='checkout.payment' ui-sref-active='active'>PAYMENT</a>
+                <a ui-sref='checkout.summary' ui-sref-active='active'>SUMMARY</a>
+            </div>
+            <div ui-view>
+            </div>
+        </div>
+    </div>
+</div>

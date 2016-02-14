@@ -1,0 +1,14 @@
+<div id='registr-login'>
+    <div>
+        <span>EMAIL ADDRESS</span>
+        <input type="email" ng-model='login.email'>
+    </div>
+    <div>
+        <span>PASSWORD</span>
+        <input type="password" ng-model='login.pwd'>
+    </div>
+    <a class='light-red-btn' ng-click="sendLoginReq()">LOG IN</a>
+    <span>Don't Have an Account?</span>
+    <span ui-sref='registr.signup' class='underline-text'>Sign Up Now!</span>
+    <span class='light-red'>{{ loginFail }}</span>
+</div>

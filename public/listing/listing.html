@@ -1,0 +1,83 @@
+<div id='mega-container'>
+    <div id='navBar'>
+        <h1>VIRTUAL STORE</h1>
+        <div id='nav-center'>
+            <input type='search' ng-model='searchInput'>
+            <button><i class="fa fa-search"></i></button>
+        </div>
+        <div id='nav-right'>
+            <div><a ng-click="signIn()" id='signIn'>{{ loggedIn === true ? user.firstName : 'Sign In' }}</a><a id='signOut' ng-show='loggedIn' ng-click='signOut()'>Sign Out</a></div>
+            <a ng-click='toggleCart()' id='cart-logo'><img src="../assets/cart.svg"></a>
+        </div>
+    </div>
+    <div id='overlay' ng-class="{'darken': activeCart}"></div>
+    <div id='content-container'>
+        <div id='menu'>
+            <div id='view-all'><a ng-click="customFilter = {}">View All</a></div>
+            <div>
+                <div>
+                    <h5 ng-click="customFilter = {type: 'computer'}">Computers</h5>
+                </div>
+                <ul>
+                    <li ng-click="customFilter = {classification: 'OS X'}">OS X</li>
+                    <li ng-click="customFilter = {classification: 'Windows'}">Windows</li>
+                    <li ng-click="customFilter = {classification: 'Mac OS'}">Retro</li>
+                </ul>
+            </div>
+            <div>
+                <div>
+                    <h5 ng-click="customFilter = {type: 'food'}">Food</h5>
+                </div>
+                <ul>
+                    <li ng-click="customFilter = {classification: 'main'}">Main</li>
+                    <li ng-click="customFilter = {classification: 'side'}">Side</li>
+                </ul>
+            </div>
+            <div>
+                <div>
+                    <h5 ng-click="customFilter = {type: 'drink'}">Drinks</h5>
+                </div>
+                <ul>
+                    <li ng-click="customFilter = {classification: 'tea'}">Tea</li>
+                    <li ng-click="customFilter = {classification: 'coffee'}">Coffee</li>
+                    <li ng-click="customFilter = {classification: 'juice'}">Juice</li>
+                </ul>
+            </div>
+        </div>
+        <div id='listing-container' ui-view='detail' autoscroll="true">
+            <div ng-repeat="entry in listing | filter: customFilter | filter: searchInput">
+                <div><img ng-src='{{ entry.pictureUrl }}'></div>
+                <div class='desc'>
+                    <span>{{ entry.name }}</span>
+                    <span class='price'>{{ entry.price | currency }}</span>
+                    <div class='see-details'>
+                        <a class='btn-links' ui-sref="listing.item({ itemId: '{{ entry._id }}' })"><span>See Details</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id='cart-preview' ng-class="{'active': activeCart}">
+            <div id='content'>
+                <span>Your Cart</span>
+                <a ng-click='closeCart()'>Close</a>
+                <div ng-repeat="item in cart" id='list'>
+                    <div class='float-left'>
+                        <i class="fa fa-plus-square-o" ng-click='item.quantity = item.quantity + 1'></i>
+                        <span class='grey'>{{ item.quantity }}</span>
+                        <i class="fa fa-minus-square-o" ng-click='item.quantity = item.quantity - 1' ng-hide='item.quantity === 1'></i>
+                    </div>
+                    <span class='margin-left'>{{ item.name }}</span>
+                    <div class='float-right'>
+                        <span class='grey'>{{ item.quantity * item.price | currency }}</span>
+                        <i class="fa fa-times" ng-click='removeItem(item)'></i>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class='checkout' ui-sref='checkout.info'>
+                <span>Check Out</span>
+                <span>{{ sum() | currency }}</span>
+            </div>
+        </div>
+    </div>
+</div>

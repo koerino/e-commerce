@@ -1,0 +1,93 @@
+<div id='payment-container'>
+    <div id='card-info-container'>
+        <a ui-sref='checkout.summary' class='next'>NEXT</a>
+        <a ui-sref='checkout.info' class='prev'>PREVIOUS</a>
+        <div>
+            <lable>
+                <input type='radio' value='Visa' ng-model='payment.cardType'>
+                <img src="../assets/Visa.svg">
+            </lable>
+            <lable>
+                <input type='radio' value='Mastercard' ng-model='payment.cardType'>
+                <img src="../assets/Mastercard.svg">
+            </lable>
+            <lable>
+                <input type='radio' value='Discover' ng-model='payment.cardType'>
+                <img src="../assets/Discover.svg">
+            </lable>
+        </div>
+        <div>
+            <span>Card Number&nbsp&nbsp</span>
+            <input type="text" class='width-20' ng-model="payment.card">
+            <span>Expiration Date&nbsp&nbsp</span>
+            <select ng-model='payment.expirMonth'>
+                <option value='' selected='selected'>Month</option>
+                <option value='01'>01</option>
+                <option value='02'>02</option>
+                <option value='03'>03</option>
+                <option value='04'>04</option>
+                <option value='05'>05</option>
+                <option value='06'>06</option>
+                <option value='07'>07</option>
+                <option value='08'>08</option>
+                <option value='09'>09</option>
+                <option value='10'>10</option>
+                <option value='11'>11</option>
+                <option value='12'>12</option>
+            </select>
+            <select ng-model='payment.expirYear'>
+                <option value='' selected='selected'>Year</option>
+                <option value='2016'>2016</option>
+                <option value='2017'>2017</option>
+                <option value='2018'>2018</option>
+                <option value='2019'>2019</option>
+                <option value='2020'>2020</option>
+                <option value='2021'>2021</option>
+                <option value='2022'>2022</option>
+                <option value='2023'>2023</option>
+                <option value='2024'>2024</option>
+                <option value='2025'>2025</option>
+            </select>
+            <span>CVC&nbsp&nbsp</span>
+            <input type='text' ng-model='payment.cvc' class='width-6'>
+        </div>
+    </div>
+    <hr>
+    <div id='billing-address'>
+        <h6>BILLING ADDRESS</h6>
+        <input type="checkbox" ng-model='copyAddress' ng-change='toggleCopy(); sync()'><span>Check Here If the Same As Shipping Address</span>
+        <div>
+            <div>
+                <span>Full Name</span>
+                <input type='text' class='width-20' ng-model='billing.fullname' ng-disabled="copyAddress">
+            </div>
+            <div>
+                <span>Email</span>
+                <input type='text' id='email' class='width-25' ng-model="billing.email" ng-disabled="copyAddress">
+            </div>
+        </div>
+        <div>
+            <span>Address</span>
+            <input type="text" placeholder="Line 1" class='width-30' ng-model="billing.address1" ng-disabled="copyAddress">
+            <input type="text" placeholder="Line 2 (optional)" class='width-30 line-2' ng-model="billing.address2" ng-disabled="copyAddress">
+        </div>
+        <div>
+            <div>
+                <span>City</span>
+                <input type='text' class='width-15' ng-model='billing.city' ng-disabled="copyAddress">
+            </div>
+            <div>
+                <span>State/Province</span>
+                <input type='text' class='width-15' ng-model="billing.state" ng-disabled="copyAddress">
+            </div>
+            <div>
+                <span>ZIP/Postal Code</span>
+                <input type='text' class='width-10' ng-model="billing.zipcode" ng-disabled="copyAddress">
+            </div>
+            <div>
+                <span>Country</span>
+                <input type='text' class='width-15' ng-model="billing.country" ng-disabled="copyAddress">
+            </div>
+        </div>
+    </div>
+</div>

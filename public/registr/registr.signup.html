@@ -1,0 +1,38 @@
+<div id='registr-signup'>
+    <form name='signup' nonvalidate>
+        <div>
+            <span>FULL NAME</span>
+            <span ng-show="invalidForm && signup.fullname.$error.required" class='light-red no-margin'>&nbsp Don't be so mysterious.</span>
+            <input type="text" name='fullname' ng-model='newUser.fullname' required>
+        </div>
+        <div>
+            <span>EMAIL ADDRESS</span>
+            <span ng-show="invalidForm && signup.email.$error.email" class='light-red no-margin'>&nbsp Please enter a valid email.</span>
+            <span ng-show="invalidForm && signup.email.$error.required" class='light-red no-margin'>&nbsp Email cannot be blank.</span>
+            <input type="email" name='email' ng-model='newUser.email' required>
+        </div>
+        <div id='pwd-form'>
+            <span>PASSWORD</span>
+            <span ng-show="invalidForm && signup.pwd.$error.pwdCheck" class='light-red no-margin'>&nbsp Choose a stronger password.</span>
+            <span ng-show="invalidForm && signup.pwd.$error.required" class='light-red no-margin'>&nbsp Password cannot be blank.</span>
+            <input type="password" name='pwd' ng-model='newUser.pwd' required pwd-check>
+            <ul id='pwd-check'>
+                <li ng-show='!validLen'>– At least 8 characters</li>
+                <li ng-show='!hasCapitalLetter'>– Contains capital letter(s)</li>
+                <li ng-show='!hasLowercaseLetter'>– Contains lowercase letter(s)</li>
+                <li ng-show='!hasNumber'>– Contains digit(s)</li>
+            </ul>
+        </div>
+        <div>
+            <span>CONFIRM PASSWORD</span>
+            <span ng-show="invalidForm && signup.cpwd.$error.pwdMatch" class='light-red no-margin'>&nbsp Passwords don't match.</span>
+            <input type="password" name='cpwd' ng-model='newUser.cpwd' required pwd-match>
+        </div>
+        <div class='align-center'>
+            <a class='light-red-btn' ng-click="signup.$valid && signupSubmit(); signup.$invalid && alert()">SIGN UP</a>
+        </div>
+    </form>
+    <span class='light-red block' id='signupRes'>{{ signupRes }}</span>
+    <span class='block'>Already Have an Account?</span>
+    <span ui-sref='registr.login' class='underline-text block'>Sign In</span>
+</div>

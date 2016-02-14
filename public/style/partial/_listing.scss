@@ -1,0 +1,298 @@
+#mega-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    white-space: nowrap;
+}
+#navBar {
+    width: inherit;
+    height: 2.5em;
+    line-height: 2.5em;
+    color: $red;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    @include font(24px);
+    h1 {
+        line-height: inherit;
+        margin-left: 2em;
+    }
+    input {
+        @include font;
+        width: 30em;
+        height: 42px;
+        color: $pure-grey;
+        padding: 0 0.5em;
+        border: 1px solid $platinum;
+        border-right: none;
+        outline: none;
+    }
+    button {
+        @include font(24px);
+        width: 50px;
+        height: 42px;
+        border: 1px solid $platinum;
+        border-left: none;
+        color: $red;
+        background-color: $pure-white;
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+    #nav-center {
+        width: 35em;
+        margin: auto;
+        display: flex;
+    }
+    #nav-right {
+        position: absolute;
+        height: 100%;
+        right: 0;
+        * {
+            display: inline-block;
+        }
+        > div {
+            display: inline-flex;
+            flex-direction: column;
+        }
+    }
+    #signIn {
+        font-size: 16px;
+        margin-right: 1em;
+        @include hover-1($light-red);
+        &:hover + #signOut {
+            visibility: visible;
+        }
+    }
+    #cart-logo {
+        height: 100%;
+        padding: 0 0.75em;
+        float: right;
+        img {
+            width: 42px;
+            height: 42px;
+            margin: 7px 3px 0 0;
+        }
+        @include transition(all, 0.3s, linear);
+        &:hover {
+            background-color: $milk-white;
+            cursor: pointer;
+        }
+    }
+    #signOut {
+        @extend #signIn;
+        position: absolute;
+        visibility: collapse;
+        border-top: 1px solid $platinum;
+        &:hover {
+            visibility: visible;
+        }
+    }
+}
+#content-container {
+    height: 100vh;
+    #menu {
+        width: 18em;
+        height: inherit;
+        position: fixed;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 7.5em;
+        div {
+            width: 10em;
+            text-align: center;
+            div {
+                height: 3em;
+                @include center;
+                &:hover {
+                    cursor: pointer;
+                    background-color: $milk-white;
+                }
+            }
+            h5 {
+                @include font(18px);
+                color: $pure-grey;
+            }
+            ul {
+                @include font(16px);
+                li {
+                    padding: 0.75em 0;
+                    @include hover-1($light-grey);
+                }
+            }
+        }
+    }
+    #view-all {
+        a {
+            @include font(16px);
+            @include buttonlike-base;
+            @include buttonlike-2($red);
+        }
+        margin-bottom: 2em;
+    }
+    #listing-container {
+        padding: 5em 0 0 20em;
+        @include center(column);
+        align-items: flex-start;
+        > div {
+            @include center;
+            margin: 1em 0;
+            img {
+                width: 300px;
+                height: 200px;
+            }
+        }
+        .desc {
+            @include font(30px);
+            display: flex;
+            flex-direction: column;
+            height: 200px;
+            color: $pure-grey;
+            > span {
+                margin: 0 0 0.5em 2em;
+            }
+            .price {
+                color: $light-grey;
+            }
+        }
+        .see-details {
+            margin: 2em;
+        }
+        .btn-links {
+            font-size: 16px;
+            @include buttonlike-base;
+            @include buttonlike-2($orange);
+            margin: auto;
+        }
+    }
+}
+#overlay {
+    position: fixed;
+    height: 0;
+    z-index: 3;
+    &.darken {
+        width: 100%;
+        height: 100%;
+        background-color: rgba($pure-black, 0.3);
+    }
+}
+#detail-container {
+    @include center(column);
+    #info {
+        @include center;
+        div {
+            @include center(column);
+            margin: 0 0 1em 5em;
+            span {
+                @include font(30px);
+                color: $pure-grey;
+            }
+            #price {
+                margin-top: 0.75em;
+                color: $light-grey;
+            }
+            div {
+                display: inline-block;
+                margin: 2em 1em 0 0;
+            }
+            button {
+                @include buttonlike-base;
+                @include buttonlike-2($orange);
+                @include font(16px);
+                margin-left: 0.5em;
+                &:focus {
+                    outline: none;
+                }
+            }
+            #back {
+                @include buttonlike-2($light-red);
+            }
+        }
+    }
+}
+#des {
+    @include font(18px);
+    color: $pure-grey;
+    width: 42em;
+    white-space: normal;
+    line-height: 1.5em;
+    margin-top: 1em;
+}
+#cart-preview {
+    width: 30em;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    clear: left;
+    visibility: collapse;
+    right: -1000px;
+    background-color: lighten($milk-white, 10%);
+    @include transition(all, 0.5s, linear);
+    z-index: 5;
+    &.active {
+        visibility: visible;
+        right: 0;
+    }
+    #content {
+        height: 88vh;
+        overflow-y: auto;
+        > span {
+            @include font;
+            color: $dark-grey;
+            margin: 2em 2em 3em;
+            display: inline-block;
+        }
+        a {
+            @include buttonlike-base;
+            @include buttonlike-2($light-red);
+            @include font(16px);
+            margin-left: 9.5em;
+        }
+    }
+    hr {
+        border-top: none;
+        border-bottom: 1px solid $platinum;
+    }
+    #list {
+        padding-top: 0.5em;
+        span {
+            @include font(13px);
+        }
+        i {
+            margin: 0 0.5em;
+            @include hover-1($dark-grey);
+        }
+    }
+    .grey {
+        color: $pure-grey;
+    }
+    .float-right {
+        float: right;
+        padding-right: 1em;
+    }
+    .float-left {
+        float: left;
+        padding-left: 1em;
+        width: 5em;
+    }
+    .margin-left {
+        margin-left: 1em;
+    }
+    .checkout {
+        @include hover-2($orange);
+        @include center;
+        position: absolute;
+        bottom: 0;
+        height: 3.75em;
+        width: 100%;
+        span {
+            color: $milk-white;
+            @include font(18px);
+            margin: 0 2em;
+        }
+    }
+}
