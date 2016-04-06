@@ -1,10 +1,9 @@
 //controller
 app.controller('ListingController', ['$scope', '$rootScope', '$state', 'listing', 'getCart', 'getSum', function ($scope, $rootScope, $state, listing, getCart, getSum) {
     listing
-        .success(function (res) {
-            $scope.listing = res;
-        })
-        .error(function (err) {
+        .then(function (res) {
+            $scope.listing = res.data;
+        }, function (err) {
             console.log(err);
         });
     $scope.state = $state;
@@ -45,10 +44,9 @@ app.controller('ListingController', ['$scope', '$rootScope', '$state', 'listing'
 //services
 app.factory('listing', ['$http', function ($http) {
     return $http.get('/api/listing')
-        .success(function (res) {
+        .then(function (res) {
             return res;
-        })
-        .error(function (err) {
+        }, function (err) {
             console.log(err);
         });
 }]);

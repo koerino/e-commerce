@@ -12,15 +12,14 @@ app.controller('RegistrController', ['$scope', '$rootScope', '$state', '$http', 
             pwd: $scope.login.pwd
         };
         $http.post('/api/login', data)
-            .success(function (res) {
-                if (!res.email) $scope.loginFail = res;
+            .then(function (res) {
+                if (!res.data.email) $scope.loginFail = res.data;
                 else {
-                    $rootScope.user = res;
+                    $rootScope.user = res.data;
                     $rootScope.loggedIn = true;
                     $state.go('listing');
                 }
-            })
-            .error(function (err) {
+            }, function (err) {
                 console.log(err);
             });
     };
@@ -31,10 +30,9 @@ app.controller('RegistrController', ['$scope', '$rootScope', '$state', '$http', 
             fullname: $scope.newUser.fullname
         };
         $http.post('api/signup', data)
-            .success(function (res) {
-                $scope.signupRes = res;
-            })
-            .err(function (err) {
+            .then(function (res) {
+                $scope.signupRes = res.data;
+            }, function (err) {
                 console.log(err);
             });
     };
